@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>摄影交互教程 · 分镜与运镜 16 课</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f4f4f2;
+        --card: #ffffff;
+        --ink: #1c1e21;
+        --ink-2: #4a4f57;
+        --ink-3: #7a8087;
+        --line: #e3e4e0;
+        --accent: #c8501a;
+        --accent-ink: #a63f10;
+        --accent-soft: #fdf0e7;
+        --gold: #8a6d1d;
+        --gold-soft: #faf3dc;
+        --red: #b3372a;
+        --red-soft: #fbecea;
+        --green: #2e6b46;
+        --green-soft: #e9f4ec;
+        --blue-soft: #eaf1f8;
+        --shadow: 0 1px 3px rgba(20, 22, 26, .07), 0 8px 28px rgba(20, 22, 26, .06);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14161a;
+          --bg-soft: #1d2025;
+          --card: #1d2025;
+          --ink: #eceeef;
+          --ink-2: #b9bec5;
+          --ink-3: #8b9096;
+          --line: #31343b;
+          --accent: #f0834f;
+          --accent-ink: #f5a173;
+          --accent-soft: #33231a;
+          --gold: #d9b45c;
+          --gold-soft: #2f2a18;
+          --red: #e88a7d;
+          --red-soft: #33201c;
+          --green: #8fcea6;
+          --green-soft: #1d2c23;
+          --blue-soft: #1e2836;
+          --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 18px 80px; }
+
+      /* ---------- 头部 ---------- */
+      header.hero { padding: 34px 0 8px; }
+      .hero .kicker {
+        font-size: 13px; font-weight: 700; letter-spacing: .14em;
+        color: var(--accent-ink); margin: 0 0 8px;
+      }
+      .hero h1 {
+        font-family: "Noto Serif SC", "Songti SC", serif;
+        font-size: clamp(30px, 6vw, 44px); font-weight: 900; line-height: 1.2; margin: 0 0 12px;
+      }
+      .hero p.lede { color: var(--ink-2); margin: 0 0 14px; max-width: 42em; }
+      .hero .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+      .hero .meta span {
+        font-size: 13px; font-weight: 500; color: var(--ink-2);
+        border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px;
+        background: var(--bg-soft);
+      }
+      .hero .meta span b { color: var(--ink); }
+
+      /* ---------- 导航 ---------- */
+      nav.toc {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        margin: 18px -18px 0; padding: 10px 18px;
+      }
+      nav.toc .weeks { display: flex; flex-wrap: wrap; gap: 8px; }
+      nav.toc a.week {
+        text-decoration: none; color: var(--ink); font-weight: 700; font-size: 14px;
+        border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; background: var(--card);
+      }
+      nav.toc a.week small { color: var(--ink-3); font-weight: 500; margin-left: 4px; }
+      nav.toc a.week.active { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+      nav.toc .days { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+      nav.toc a.day {
+        text-decoration: none; color: var(--ink-2); font-size: 12.5px; font-weight: 500;
+        border-radius: 999px; padding: 2px 10px; border: 1px solid transparent;
+      }
+      nav.toc a.day:hover { border-color: var(--line); color: var(--ink); }
+      nav.toc a.day.active { background: var(--ink); color: var(--bg); }
+
+      /* ---------- 章节 ---------- */
+      section.week { margin-top: 52px; scroll-margin-top: 120px; }
+      .week-head { border-top: 3px solid var(--ink); padding-top: 16px; margin-bottom: 6px; }
+      .week-head .wno { font-size: 13px; font-weight: 700; letter-spacing: .14em; color: var(--accent-ink); margin: 0; }
+      .week-head h2 {
+        font-family: "Noto Serif SC", "Songti SC", serif;
+        font-size: clamp(24px, 4.5vw, 32px); font-weight: 900; margin: 4px 0 6px; line-height: 1.3;
+      }
+      .week-head p { color: var(--ink-2); margin: 0; max-width: 44em; }
+
+      /* ---------- 媒体 ---------- */
+      figure.media { margin: 20px 0 8px; }
+      figure.media video, figure.media img {
+        width: 100%; display: block; border-radius: 12px; background: #000;
+        box-shadow: var(--shadow); aspect-ratio: 16 / 9; object-fit: cover;
+      }
+      figure.media img.plain { background: #fff; object-fit: contain; aspect-ratio: auto; border: 1px solid var(--line); }
+      figure.media figcaption { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+      figure.media figcaption b { color: var(--ink-2); }
+
+      /* ---------- 课程卡 ---------- */
+      article.lesson {
+        margin-top: 34px; border: 1px solid var(--line); border-radius: 14px;
+        background: var(--card); box-shadow: var(--shadow); overflow: hidden;
+        scroll-margin-top: 130px;
+      }
+      .lesson-head { padding: 22px 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+      .day-badge {
+        flex: 0 0 auto; text-align: center; border-radius: 10px;
+        background: var(--ink); color: var(--bg); padding: 7px 10px 5px; line-height: 1.15;
+      }
+      .day-badge .d { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; opacity: .75; }
+      .day-badge .n { display: block; font-family: "Noto Serif SC", serif; font-size: 24px; font-weight: 900; }
+      .lesson-head h3 {
+        font-family: "Noto Serif SC", "Songti SC", serif;
+        font-size: clamp(21px, 4vw, 26px); font-weight: 900; margin: 2px 0 2px; line-height: 1.3;
+      }
+      .lesson-head .en { color: var(--ink-3); font-size: 13.5px; font-weight: 500; letter-spacing: .02em; margin: 0; }
+      .lesson-body { padding: 16px 24px 24px; }
+
+      .one-liner {
+        background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        border-radius: 10px; padding: 13px 16px; margin: 4px 0 20px;
+        font-size: 16.5px; line-height: 1.65;
+      }
+      .one-liner .tag {
+        display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .1em;
+        color: var(--accent-ink); margin-right: 8px; vertical-align: 2px;
+      }
+      .one-liner strong { color: var(--accent-ink); }
+
+      .blocks { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      @media (min-width: 720px) {
+        .blocks { grid-template-columns: 1fr 1fr; }
+        .block.wide { grid-column: 1 / -1; }
+      }
+      .block { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 10px; background: var(--bg); }
+      .block h4 {
+        margin: 0 0 8px; font-size: 14px; font-weight: 700; letter-spacing: .04em;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .block h4 .dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+      .block ul { margin: 0; padding-left: 1.15em; }
+      .block li { margin-bottom: 7px; color: var(--ink-2); }
+      .block li strong, .block li b { color: var(--ink); }
+      .block.role h4 .dot { background: var(--accent); }
+      .block.pocket { background: var(--blue-soft); border-color: transparent; }
+      .block.pocket h4 .dot { background: #3d6ea5; }
+      .block.pocket li { color: var(--ink-2); }
+      .block.iphone h4 .dot { background: #6a5aa8; }
+      .block.err { background: var(--red-soft); border-color: transparent; }
+      .block.err h4 { color: var(--red); }
+      .block.err h4 .dot { background: var(--red); }
+      .block.practice { background: var(--green-soft); border-color: transparent; }
+      .block.practice h4 { color: var(--green); }
+      .block.practice h4 .dot { background: var(--green); }
+      .block.practice .time {
+        margin-left: auto; font-size: 12px; font-weight: 700; color: var(--green);
+        border: 1px solid currentColor; border-radius: 999px; padding: 0 9px; letter-spacing: 0;
+      }
+
+      .frame-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 18px; }
+      .frame-pair figure { margin: 0; }
+      .frame-pair img { width: 100%; display: block; border-radius: 10px; aspect-ratio: 16/9; object-fit: cover; }
+      .frame-pair figcaption { font-size: 12.5px; color: var(--ink-3); margin-top: 5px; text-align: center; }
+
+      footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-3); font-size: 13.5px; }
+      footer p { margin: 0 0 6px; }
+      a.top-link { color: var(--accent-ink); }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <p class="kicker">POCKET 4 + IPHONE 15 · 每日一课</p>
+        <h1>摄影交互教程：分镜与运镜</h1>
+        <p class="lede">四周主线、16 课全文：从推拉摇移跟五种运镜，到景别、轴线、转场、节奏，最后落到一条 30 秒短片的策划、实拍与剪辑。其中运镜、景别和轴线课配了示范视频与图解——推拉摇移四合一示范片、跟镜、景别示范和轴线示意图，跟着练就行。</p>
+        <div class="meta">
+          <span><b>16</b> 课</span>
+          <span><b>4</b> 周主线</span>
+          <span>设备 <b>Pocket4</b> · <b>iPhone 15</b></span>
+          <span>每课一个 <b>5 分钟练习</b></span>
+        </div>
+      </header>
+
+      <nav class="toc" aria-label="课程目录">
+        <div class="weeks">
+          <a class="week" href="#week1">第 1 周<small>运镜基础</small></a>
+          <a class="week" href="#week2">第 2 周<small>分镜逻辑</small></a>
+          <a class="week" href="#week3">第 3 周<small>转场与节奏</small></a>
+          <a class="week" href="#week4">第 4 周<small>实战短片</small></a>
+        </div>
+        <div class="days" id="dayNav"></div>
+      </nav>
+
+      <!-- ================= 第 1 周 ================= -->
+      <section class="week" id="week1">
+        <div class="week-head">
+          <p class="wno">WEEK 1</p>
+          <h2>运镜基础</h2>
+          <p>推、拉、摇、移、跟——五种最基本的镜头运动。先看一遍四合一示范片找感觉，再逐课拆开练：同一个客厅、同一个玩积木的孩子，对比着看最清楚。</p>
+        </div>
+
+        <figure class="media">
+          <video controls preload="none" playsinline poster="week1-poster.jpg" src="week1-combined.mp4"></video>
+          <figcaption><b>四种运镜四合一示范片（42 秒）</b>：片头 + 推 / 拉 / 摇 / 移四段演示，每段左上角标了名字。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+        </figure>
+
+        <!-- Day 1 -->
+        <article class="lesson" id="day1">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">1</span></div>
+            <div>
+              <h3>推镜</h3>
+              <p class="en">Push-in</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>镜头从远往近推，<strong>观众的注意力就被推到主体身上</strong>。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline poster="day1-poster.jpg" src="day1-push.mp4"></video>
+              <figcaption><b>推镜示范（10 秒）</b>：从全景一路走近到脸部特写，注意力被「推」到孩子身上。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <div class="frame-pair">
+              <figure><img src="day1-frame-1.jpg" alt="推镜起幅：全景，孩子在客厅地毯上玩积木" loading="lazy" /><figcaption>起幅 · 全景：先交代环境</figcaption></figure>
+              <figure><img src="day1-frame-2.jpg" alt="推镜落幅：推近到孩子脸部特写" loading="lazy" /><figcaption>落幅 · 特写：注意力落到脸上</figcaption></figure>
+            </div>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>从环境到人物</strong>：一个镜头先交代在哪儿，再落到谁身上。</li>
+                  <li><strong>推情绪</strong>：越推越近，情绪越紧，适合重要的节拍。</li>
+                  <li><strong>代替剪辑</strong>：一个推镜完成全景到特写的过渡，不用切两刀。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>云台用<strong>跟随模式</strong>，摇杆速度调到<strong>最慢档</strong>。</li>
+                  <li>人往前走：脚步小而匀，<strong>膝盖微弯当减震</strong>。</li>
+                  <li>手腕别动，靠身体走——推的平稳来自脚步，不来自手。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄，4K 30fps</strong>，双手握稳，手肘贴紧身体。</li>
+                  <li>匀速往前走，<strong>别只伸手往前送手机</strong>——那是假推镜。</li>
+                  <li>想更稳就开<strong>动作模式</strong>。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>推太快</strong>：观众还没看清环境，注意力就被拽走了。</li>
+                  <li><strong>推到一半停住</strong>：推镜最忌讳中途犹豫，一停就露怯。</li>
+                  <li><strong>构图跑偏</strong>：推近了才发现主体不在画面中心。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找个主体（桌上一杯水、小小杜的玩具），拍 <strong>3 条 5 秒推镜</strong>。</li>
+                  <li>从能看到周围环境开始，匀速推到<strong>主体占满画面一半</strong>。</li>
+                  <li>只留最稳、最匀速的一条。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 2 -->
+        <article class="lesson" id="day2">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">2</span></div>
+            <div>
+              <h3>拉镜</h3>
+              <p class="en">Pull-back</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>推镜的反向：镜头从主体缓缓拉远，<strong>把人物放进环境里</strong>，或者把完整的环境揭示出来。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline poster="day2-poster.jpg" src="day2-pull.mp4"></video>
+              <figcaption><b>拉镜示范（10 秒）</b>：从手部特写往后拉，整个房间慢慢露出来——是「哦，原来他在这里」。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>揭示环境</strong>：从近景拉到全景，交代「原来他在哪」。</li>
+                  <li><strong>抽离和收尾</strong>：人物越来越小，留出空间感，常用来收一段。</li>
+                  <li><strong>展示空间关系</strong>：从一个人拉到一群人、从一条街拉到整个小区。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>用<strong>随动模式，锁住俯仰轴</strong>，只让云台负责水平稳定，远近变化由倒退脚步控制。</li>
+                  <li>先把人物框在近景构图里（半身左右），然后<strong>小碎步倒退</strong>匀速拉开距离。</li>
+                  <li>有人物跟随时开<strong>智能跟随</strong>锁定主体。</li>
+                  <li>提前看好身后的路，速度要慢。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄</strong>（等效 24mm），拉镜要带环境，别用长焦。</li>
+                  <li>4K 30fps 足够；想更顺滑可 4K 60fps 拍、后期压成 30fps。</li>
+                  <li>双手握机、肘部贴紧身体，小碎步倒退；手抖厉害就开<strong>动作模式</strong>（2.8K）。</li>
+                  <li>膝盖微屈、小步幅，或蹲下来鸭子步倒退。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>速度不匀</strong>，忽快忽慢。</li>
+                  <li><strong>拉着拉着跑偏</strong>，主体滑出画面中心。</li>
+                  <li><strong>拉得太快太长</strong>：5–8 秒足够讲完一个信息。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找个人（或小小杜的玩具 / 背影当主体），从近景拍 <strong>6 秒拉镜，共 3 条</strong>。</li>
+                  <li>第 1 条正常速度，第 2 条慢一半，第 3 条从极近（半身）直接拉到全景。</li>
+                  <li>回放选主体不跑偏、速度最匀的一条。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 3 -->
+        <article class="lesson" id="day3">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">3</span></div>
+            <div>
+              <h3>摇镜</h3>
+              <p class="en">Pan</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>机位不动，相机水平转一圈镜头，<strong>像人站在原地转头看东西</strong>，最适合扫一个宽大的场景。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline src="day3-pan.mp4"></video>
+              <figcaption><b>摇镜示范（10 秒）</b>：机位没动，原地从书架摇过沙发，最后落在孩子身上。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>交代空间关系</strong>：一个摇镜头把两个人物位置、环境全说清楚。</li>
+                  <li><strong>追踪运动主体</strong>：跟着人物或车走，保持它在画面里不动，背景流动。</li>
+                  <li><strong>衔接与过渡</strong>：摇到场景一端停住，再切下一个镜头。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>云台设为<strong>跟随模式</strong>（摇杆 / 肩键控制左右转向），让云台保持水平。</li>
+                  <li>双手握持手柄，肘贴身体，<strong>把腰当转轴，转腰不转手</strong>。</li>
+                  <li>用屏幕取景，匀速推摇杆，从画面一端起幅、摇到另一端收幅，<strong>默数 3 秒走完一个 90 度</strong>。</li>
+                  <li>摇之前半秒先不动（起幅定格），摇完停住再定格半秒，<strong>给剪辑留头尾</strong>。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄</strong>（4800 万裁切后仍清晰），4K 30fps。</li>
+                  <li>双手横握，大拇指按着快门，肘贴肋骨，<strong>把胳膊当云台</strong>。</li>
+                  <li>快速摇动会果冻，动作放慢，腰部发力转，<strong>3 秒走 90 度</strong>。</li>
+                  <li>抖得厉害就打开<strong>动作模式</strong>，防抖最强；但光线暗时会降质，优先在白天用。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>开始和结束太突然</strong>，没有起幅和落幅。</li>
+                  <li><strong>速度忽快忽慢</strong>。</li>
+                  <li><strong>边摇边上下晃</strong>：摇镜只负责水平转。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找个窗边或阳台，对着窗外景物，均匀地从左摇到右拍一条（<strong>3 秒内走完</strong>）。</li>
+                  <li>共拍 <strong>3 条</strong>，看回放挑出头尾有停顿、中间最匀的一条。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 4 -->
+        <article class="lesson" id="day4">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">4</span></div>
+            <div>
+              <h3>移镜</h3>
+              <p class="en">Truck / Lateral Dolly</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>相机不转方向，整机像轨道车一样左右横向平移，<strong>画面里的世界从镜头前滑过去</strong>。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline src="day4-truck.mp4"></video>
+              <figcaption><b>移镜示范（10 秒）</b>：整机横着滑，沙发、孩子、书架依次从画面里滑过去，重点看背景的滑动感。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>展开空间</strong>：横扫过去，观众一眼看懂人物和环境的关系。</li>
+                  <li><strong>制造并列感</strong>：和人物并行移动，适合拍走路、看景、陪孩子玩，有陪伴感。</li>
+                  <li><strong>中性过渡</strong>：推拉都有明确情绪倾向，移镜更客观，适合段落之间的衔接镜头。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>云台模式用<strong>云台回中（锁定朝向）</strong>，镜头朝向固定，整个人横向移动，得到干净纯粹的横移轨道感；想边移边带一点跟随的感觉，再切换到跟随模式。</li>
+                  <li>步伐用<strong>螃蟹步</strong>：膝盖微弯、侧着身子小步挪，脚跟先着地再缓缓压到脚掌，速度均匀。</li>
+                  <li>拍之前先把路线踩一遍（地上有没有玩具、门框、台阶）。</li>
+                  <li>一条拍 <strong>4–6 秒</strong>，起始和结尾都先定格 1 秒再动。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄</strong>（4800 万像素、视角最正），4K 30fps。</li>
+                  <li>横向移动最吃防抖：开<strong>动作模式</strong>（防抖最强，注意是 2.8K 分辨率）拍走路横移；静态场景下站着不动移手机，用普通视频模式就行。</li>
+                  <li>双手捧机贴紧胸前，肘部夹住身体，<strong>靠腰和脚步带动手机平移</strong>，别用手臂左右甩。</li>
+                  <li>步速放慢到平时的一半——你觉得太慢了的那种速度，成片里看正好。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>起步猛、刹车急</strong>：起步先静 1 秒，结尾也静 1 秒。</li>
+                  <li><strong>边移边偏航</strong>：盯住取景框里一个参照点（如门框、窗框线），全程保持在固定位置。</li>
+                  <li><strong>只动手臂不动身体</strong>：手臂锁死不动，移动全靠脚步。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>在家里找一条横向路线（比如从门框横移到书架），螃蟹步走直线，录 <strong>3 条</strong>。</li>
+                  <li>每条 5 秒，带 1 秒定格头尾。</li>
+                  <li>回放对比选出一条：<strong>全程匀速、画面水平没歪、开头结尾不抖</strong>。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 5 -->
+        <article class="lesson" id="day5">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">5</span></div>
+            <div>
+              <h3>跟镜</h3>
+              <p class="en">Tracking</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>镜头跟着人一起走——<strong>人在画面里稳稳的，动的是背景</strong>，观众就像跟在朋友身后散步一样。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline src="day5-tracking.mp4"></video>
+              <figcaption><b>跟镜示范（10 秒）</b>：主要看「主体稳定、背景流动」的跟镜感觉。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>陪伴感</strong>：带观众跟着人物「走完一段路」，进入他的旅程，是最有代入感的运镜之一。</li>
+                  <li><strong>交代空间</strong>：人物从 A 点走到 B 点，背景自然带出环境信息，一镜两用。</li>
+                  <li><strong>情绪铺垫</strong>：跟在人物身后慢慢走，常用来表现思考、出发、离别这类情绪。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>云台用<strong>跟随模式</strong>，手持平举，镜头对准人物腰部以上，保持人物在画面<strong>中央偏下一点</strong>。</li>
+                  <li>步伐用螃蟹步（侧身横移）或正面倒退走，和人物保持<strong>同速、距离恒定（2–3 米左右）</strong>。</li>
+                  <li>摇杆只做微调构图，别大幅度掰。</li>
+                  <li>注意：<strong>余光看路别只盯屏幕</strong>；倒退走之前先确认身后没障碍物，安全第一。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>用<strong>「动作模式」</strong>拍（防抖最强），或 4K 60fps 主摄 1x。</li>
+                  <li>双手握持、手机贴近身体、肘部夹紧，<strong>拿身体当减震器</strong>。</li>
+                  <li>和被摄者保持同速同向，眼睛看人物，别死盯屏幕边缘。</li>
+                  <li>动作模式在暗光下画质掉得明显，尽量选光线好的地方拍。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>速度忽快忽慢</strong>，人物在画面里一前一后「呼吸」。</li>
+                  <li><strong>距离忽远忽近</strong>，景别一会儿大一会儿小。</li>
+                  <li><strong>只看屏幕不看路</strong>，撞到东西或踩空——倒退走尤其危险。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找个家人在小区路上或客厅走一段约 <strong>10 米</strong>的直线。</li>
+                  <li>拍 3 条：①侧面跟随 ②正面倒退跟随（注意安全）③背面跟随。</li>
+                  <li>回看选出主体最稳、背景流动最顺的一条，<strong>记住那次的步伐感觉</strong>。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= 第 2 周 ================= -->
+      <section class="week" id="week2">
+        <div class="week-head">
+          <p class="wno">WEEK 2</p>
+          <h2>分镜逻辑</h2>
+          <p>运镜解决「一个镜头怎么动」，分镜解决「几个镜头怎么拼」。这一周学景别、轴线、切镜匹配，最后落到一张能照着拍的分镜脚本。</p>
+        </div>
+
+        <!-- Day 6 -->
+        <article class="lesson" id="day6">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">6</span></div>
+            <div>
+              <h3>景别语言</h3>
+              <p class="en">Shot Sizes</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>景别就是「镜头离人有多远」——同一个动作，用远景拍是交代，用特写拍是抒情，<strong>距离就是你的语气</strong>。</p>
+            <figure class="media">
+              <video controls preload="none" playsinline poster="day6-poster.jpg" src="day6-shots.mp4"></video>
+              <figcaption><b>景别示范（16 秒）</b>：同一客厅、同一个玩积木的孩子，四个景别连着看距离感差异。AI 生成的演示素材，主要看运镜方向和节奏，真机练习以 Pocket4 / iPhone 实拍为准。</figcaption>
+            </figure>
+            <figure class="media">
+              <img src="day6-shots-diagram.jpg" alt="四种景别对照图：远景建立、中景动作、近景情绪、大特写点睛" loading="lazy" />
+              <figcaption><b>四景别对照</b>：1 · 远景「建立」交代地点和人物与空间的关系；2 · 中景「动作」最常用的工作镜头；3 · 近景 / 特写「情绪」住在这里；4 · 大特写「点睛」因为少用才有力量。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>远景「建立」</strong>：先告诉观众这是哪里、人和环境什么关系，像文章开头先交代背景。</li>
+                  <li><strong>中景「动作」</strong>：身体语言和动作看得最清楚，是最常用、最耐看的工作镜头。</li>
+                  <li><strong>近景 / 特写「情绪」</strong>：脸上的情绪住在这里，最重要的节拍才用，用多了就不值钱。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li><strong>不要用数码变焦</strong>（画质掉得快）——用脚走：靠近就是特写，退后就是远景。</li>
+                  <li>远景：云台用<strong>回中模式</strong>，双手握住，退到能装下人和环境的距离。</li>
+                  <li>中景：云台用<strong>跟随模式</strong>，把人物放在三分法线交点上，给人物视线方向留出空间。</li>
+                  <li>拍小孩注意：特写跟上孩子的脸，云台跟随灵敏度可以<strong>调低一格</strong>，动作更顺。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>远景和中景用 <strong>1x 主摄</strong>（4800 万像素），4K 30fps 就够。</li>
+                  <li>特写别用数码变焦——<strong>手机走近拍</strong>。</li>
+                  <li>双手握持贴紧身体，肘部夹紧，特写手千万别抖；走近拍时小步挪。</li>
+                  <li>想快速建立距离感，先用「拍照」四个距离各拍一张对照，比视频更快。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>整条片从头到尾一个景别</strong>：看着像监控录像，观众不知道你要他看什么。</li>
+                  <li><strong>特写滥用</strong>：场场都怼脸拍，真正重要的情绪点反而没地方升格。</li>
+                  <li><strong>走近 / 退后步伐太快</strong>：景别切换像「跳」过去，观众的注意力断了一下。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找小小杜当模特，四个距离各拍 5 秒：<strong>远景</strong>（装下人和环境）→ <strong>中景</strong>（腰部以上）→ <strong>近景</strong>（肩部以上）→ <strong>特写</strong>（脸或手）。</li>
+                  <li>回看连起来播一遍，问自己：哪个景别「情绪最足」？那就是这条片的情绪镜头。</li>
+                  <li>把这 4 条攒成你的<strong>「景别标尺」</strong>存好。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 7 -->
+        <article class="lesson" id="day7">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">7</span></div>
+            <div>
+              <h3>轴线与 180 度规则</h3>
+              <p class="en">Axis &amp; 180-Degree Rule</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>两个人对话或互动时，他们之间有一条看不见的线（轴线），<strong>所有镜头都得站在同一侧拍</strong>，不然两个人会在画面里左右乱跳。</p>
+            <figure class="media">
+              <img class="plain" src="day7-axis.png" alt="轴线俯视示意图：左侧同侧拍摄 A 始终在左 B 始终在右；右侧越轴后 A、B 左右互换" loading="lazy" />
+              <figcaption><b>俯视示意图</b>：左边是正确的同侧拍摄——剪在一起 A 始终在左、B 始终在右，方向不乱；右边是越轴——切进去 A 跑到右边、B 跑到左边，观众瞬间晕。</figcaption>
+            </figure>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>保持方向感</strong>：A 始终在左、B 始终在右，观众不用重新认人，故事读得顺。</li>
+                  <li><strong>视线对得上</strong>：正反打时两个人的视线方向一致，对话才像真的在对视。</li>
+                  <li><strong>运动方向不乱</strong>：一个人从左往右走，下一个镜头还得是左往右，否则像突然掉头。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>开拍前<strong>先定轴线</strong>：两个人视线连成的线就是轴线，站定一侧再开机。</li>
+                  <li>云台用跟随模式，正反打时<strong>原地转身换机位</strong>，别走到对面去。</li>
+                  <li>人物走动时（比如小小杜从客厅走到阳台），轴线跟着人物走的方向重新定——以运动方向为新轴线。</li>
+                  <li>实在需要越轴：先拍一个<strong>中性镜头</strong>（比如正面大特写、头顶俯拍）做缓冲，再切到对面，观众就不会晕。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>同样先定轴线再拍；<strong>1x 主摄 4K 30fps</strong>。</li>
+                  <li>正反打：两个人各拍一条，机位都在同一侧，剪辑时 A 看右、B 看左，视线就对上了。</li>
+                  <li>拍走路跟随时别贪角度：跟在同一侧，别为了好看绕到另一边。</li>
+                  <li>不确定时回放检查：上一条 A 在左，这一条 A 还在左吗？不在就是越轴了。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>为了构图好看绕到对面拍</strong>，剪出来两个人左右互换，观众瞬间出戏。</li>
+                  <li><strong>三个人以上对话不分组</strong>：轴线乱了还不知道，先定两个主角的轴线再说。</li>
+                  <li><strong>越轴后硬剪</strong>：不加缓冲镜头直接切，观众会以为换了个场景。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>找两个大人（或大人 + 小小杜）面对面坐着聊天。</li>
+                  <li>同侧拍 3 条：① A 的中景 ② B 的中景 ③ 两人同框的中景。</li>
+                  <li>再<strong>故意越轴拍 1 条</strong>（走到对面拍 A）。</li>
+                  <li>回放对比：前 3 条剪在一起顺不顺？加了越轴那条是不是立刻「跳」了一下？把这个感觉记住。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 8 -->
+        <article class="lesson" id="day8">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">8</span></div>
+            <div>
+              <h3>切镜与匹配逻辑</h3>
+              <p class="en">Cutting &amp; Match</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>切镜不是「换个角度就行」，而是让观众感觉<strong>时间、空间和动作都没断</strong>，两个镜头拼起来像一件事。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>动作匹配</strong>：同一个动作跨过切点不断。比如伸手拿杯子，上一镜手刚碰到杯子、下一镜就是握紧提起，观众不会觉得跳了一下。</li>
+                  <li><strong>视线和方向匹配</strong>：人物看向哪边、走向哪边，前后镜头要一致，不然观众会以为他突然回头或者换了方向（配合 Day 7 的轴线规则一起用）。</li>
+                  <li><strong>景别要有落差</strong>：全景定位置 → 中景交代动作 → 特写给情绪或细节。同景别、同机位硬切，看起来就像画面卡了一下。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>同一个动作<strong>至少拍两遍</strong>：第一遍拍全景 / 中景，第二遍换角度拍特写，动作本身要完整重做一遍，不要只补拍半截。</li>
+                  <li>用<strong>跟随模式</strong>（云台跟随你的转动），手持走动时步子放小、膝盖微屈，画面别上下颠。</li>
+                  <li>每个镜头开头和结尾各<strong>多留 2 秒「余量」</strong>，方便剪的时候在动作进行中找到切点，不要卡在动作停住的地方切。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>统一用 <strong>1x 主摄、4K 30fps</strong> 拍完整组镜头，别一会儿用超广角、一会儿切长焦，也别中途换帧率，否则拼起来质感会跳。</li>
+                  <li>手持时双手握稳、肘部贴紧身体；边走边拍再开动作模式，静止拍就别开，免得画面裁切感太重。</li>
+                  <li>换角度重拍时，先看一眼上一镜里<strong>手的位置、杯子的位置、人物朝向</strong>，再开拍，保证接得上。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>同景别硬切</strong>：两个镜头景别、机位几乎一样，切过去像跳帧，观众会出戏。</li>
+                  <li><strong>动作接不上</strong>：上一镜手还在桌上，下一镜手已经举到嘴边，中间缺了一截。</li>
+                  <li><strong>切点选错</strong>：在动作停顿、人物静止时切，断裂感最明显；要在<strong>动作进行中</strong>切，观众的注意力跟着动作走，就注意不到切点。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>拍「拿起水杯喝水」，共 2 个镜头：①中景：手伸向杯子、握住；②特写：同一动作从握杯开始，到举杯到嘴边。</li>
+                  <li>每镜各拍 2 遍，挑动作最连贯的一组拼起来看一遍：手的位置、握法、杯子朝向有没有变，动作有没有断。</li>
+                  <li>能顺着看下来，这节课就过关了。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 9 -->
+        <article class="lesson" id="day9">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">9</span></div>
+            <div>
+              <h3>怎么写分镜脚本</h3>
+              <p class="en">Storyboard Script</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>分镜脚本就是开拍前把每个镜头写成一张小卡片——<strong>拍什么、怎么拍、拍多久</strong>，拍的时候不用再想，直接照着执行。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li>把脑子里模糊的画面变成<strong>可执行的拍摄清单</strong>，避免漏拍、重复拍。</li>
+                  <li>提前定好景别和运镜衔接，剪辑时镜头能接得上（呼应 Day 8 的匹配逻辑）。</li>
+                  <li><strong>带娃拍摄尤其重要</strong>：娃状态好的窗口就几分钟，有脚本才能一次拍到位。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>在脚本里加一列<strong>「云台模式」</strong>：推、拉、跟用跟随模式；固定机位、摇镜的起幅落幅用锁定模式，提前定好，别临场来回切换。</li>
+                  <li>每条标注时长（一般 <strong>3–5 秒</strong>）和起幅、落幅，走位路线开拍前踩一遍。</li>
+                  <li>按脚本顺序排机位，<strong>拍完一条打个勾再移机位</strong>，别跳着拍。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>按脚本定焦段，别中途推拉变焦：交代环境用 0.5x 超广角，人物用 1x 主摄，特写用 2x。</li>
+                  <li>全片统一 <strong>4K 30fps</strong>，动作模式只留给跑动、追娃的镜头，别全程开。</li>
+                  <li>双手握持，脚本里写清走位起点和终点，边走边看落幅，别只盯着屏幕中间。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li>只写「拍娃玩积木」，没写景别、运镜、时长——<strong>这等于没写</strong>。</li>
+                  <li>一个镜头想讲三件事，拉到 10 秒以上，剪出来拖沓。</li>
+                  <li>镜头之间没留衔接：上一个落幅和下一个起幅跳太远，接不上。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>选一个带娃日常场景（比如小小杜搭积木或吃早餐），写 <strong>6 条脚本</strong>，每条含：镜号、景别、运镜、时长、画面内容、声音 / 台词。</li>
+                  <li>然后按脚本实拍其中 2 条，对照检查起幅、落幅、时长是不是和写的一样，留 1 条最顺的。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= 第 3 周 ================= -->
+      <section class="week" id="week3">
+        <div class="week-head">
+          <p class="wno">WEEK 3</p>
+          <h2>转场与节奏</h2>
+          <p>镜头之间怎么接才不露馅、片子怎么剪才有呼吸：遮挡转场藏切点，匹配转场连逻辑，音乐卡点定节奏，一镜到底做综合考试。</p>
+        </div>
+
+        <!-- Day 10 -->
+        <article class="lesson" id="day10">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">10</span></div>
+            <div>
+              <h3>遮挡转场</h3>
+              <p class="en">Occlusion Transition</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>镜头被东西挡住的那一瞬间切到下一个场景——观众的眼睛被「蒙」了一下，再睁开就已经到了新地方，<strong>转场干净得像变魔术</strong>。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>无缝换场景</strong>：从客厅到小区花园，不用黑场、不用硬切，借一个路过的行人、一扇门、一棵树就过去了。</li>
+                  <li><strong>省时间</strong>：两个地点之间不用交代路程，观众自动脑补。</li>
+                  <li><strong>藏剪辑点</strong>：切点藏在画面全黑 / 全糊的那一帧里，观众根本注意不到剪辑。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>前景遮挡物：让人物、门框、树干、柱子从镜头前划过，等<strong>画面被挡满（或几乎全黑）时停住</strong>，这就是前半段的落幅。</li>
+                  <li>后半段反过来：从被挡满的画面开始，遮挡物移开，露出新场景。</li>
+                  <li>云台用<strong>跟随模式</strong>，跟着遮挡物的移动方向走，速度要和遮挡物一致，别抢跑。</li>
+                  <li>关键：前后两段的遮挡物<strong>运动方向、速度要尽量一致</strong>，剪出来才像一次连续的「穿过去」。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>同样找前景遮挡：走过的人、墙角、门框、书架边缘都行。</li>
+                  <li><strong>1x 主摄 4K 30fps</strong>，前半段结束在「画面被挡住」的那一帧，后半段从「挡住」开始。</li>
+                  <li>手持双手握稳，跟着遮挡物平移，<strong>别在遮挡瞬间手抖</strong>——那一帧最关键。</li>
+                  <li>剪辑时把两段「全挡」帧对齐拼在一起，中间不要留空帧。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>遮挡不够满</strong>：画面只挡了一半就切，观众看得出是硬切，转场就穿帮了。</li>
+                  <li><strong>前后速度不一致</strong>：前半段遮挡物划得快、后半段移得慢，拼起来像卡了一下。</li>
+                  <li><strong>遮挡物和场景没关系</strong>：硬找个东西挡一下，观众会觉得莫名其妙——最好用场景里自然存在的东西（门、树、路人）。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>在家里找一扇门：从客厅拍走向门，门框挡满画面时停；再从门后拍门框移开露出另一个房间。</li>
+                  <li>各拍 2 遍，挑遮挡最满、速度最接近的一组拼起来。</li>
+                  <li>回放看：能不能感觉出「穿过门就换了地方」？能，就是一次成功的遮挡转场。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 11 -->
+        <article class="lesson" id="day11">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">11</span></div>
+            <div>
+              <h3>匹配转场</h3>
+              <p class="en">Match Cut</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>两个形状、动作或颜色相似的画面直接硬切在一起，<strong>观众的大脑会自动把它们连成一句话</strong>。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>跳时间、跳空间还不断逻辑</strong>：从孩子搭积木切到长大后的书桌，中间省掉十年，观众自己就补上了。</li>
+                  <li><strong>造隐喻和对比</strong>：圆形的太阳切到圆形的车轮、开门切到关门，意思不用说出口就有了。</li>
+                  <li><strong>让节奏变利落</strong>：不用黑场、不用溶解，一刀过去就是下一个节拍，片子显得干净利索。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>固定机位拍两段：云台用<strong>跟随模式或俯仰锁定</strong>，别让两段的机位角度差太多。</li>
+                  <li><strong>构图对齐是关键</strong>：用摇杆微调，让前后两段的主体在画面里占差不多的位置和大小。</li>
+                  <li>动作匹配要卡在<strong>同一瞬间</strong>：比如都是手刚碰到门把手的那一帧，切点就选在那里，前后动作才接得上。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄、普通视频 4K 30fps</strong>，两段保持同焦段、同光线方向，别一段逆光一段顺光。</li>
+                  <li>打开<strong>网格线</strong>辅助对齐，长按锁定对焦和曝光，避免两段亮度、焦点跳变。</li>
+                  <li>动作匹配从同一「半拍」起：比如都是抬脚迈步的瞬间开始拍，剪的时候<strong>硬切拼接，不要加任何转场特效</strong>。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>主体大小位置差异大</strong>：前一段杯子在画面中央占一半，后一段杯子缩到角落，切过去像换了个东西。</li>
+                  <li><strong>运动方向接反</strong>：前一段人往右走，后一段人往左走，观众会觉得他掉头了。</li>
+                  <li><strong>加了多余转场特效</strong>：匹配转场本身就是靠相似性硬切，再叠个溶解、划像就画蛇添足，反而破坏了利落感。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>在家拍 2 组、每组 2 条：①形状匹配（比如圆形的水杯切到圆形的盘子）②动作匹配（比如开门切到关门、坐下切到站起）。</li>
+                  <li>每组挑最像的一对<strong>硬切</strong>拼起来，回放看：像不像一句话？不像就调整构图或切点再试一次。</li>
+                  <li>留下最顺的那一对，这就是你第一条能用的匹配转场。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 12 -->
+        <article class="lesson" id="day12">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">12</span></div>
+            <div>
+              <h3>节奏与音乐卡点</h3>
+              <p class="en">Rhythm &amp; Music Beat</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>剪辑的切换点落在音乐的节拍上，画面一换、鼓点一到，观众会觉得这段「踩准了」，<strong>不用解释就觉得顺</strong>。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>让情绪有起伏</strong>：舒缓段用长镜头、慢运镜，鼓点起来换快切、短镜头，情绪跟着音乐走。</li>
+                  <li><strong>让转场不突兀</strong>：Day 10 遮挡、Day 11 匹配的切点如果刚好落在重拍上，观众更注意不到剪辑。</li>
+                  <li><strong>帮你定片长和结构</strong>：先定音乐，再按节拍数反推要拍几个镜头，拍的时候不瞎拍。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li><strong>先定音乐再拍</strong>：挑好一首歌，记住它的速度和重拍位置，开拍前心里数好「这个镜头占几个拍」。</li>
+                  <li>云台用跟随模式，运镜速度跟着音乐走：舒缓段推、移都放慢，节奏起来再加快，但起幅和落幅都要稳住，别在节拍点上晃。</li>
+                  <li>每个镜头多拍一点头尾：起幅前多留半秒、落幅后多留半秒，剪的时候才有地方对准节拍，不够长就没法卡。</li>
+                  <li>带娃拍：别等娃配合音乐，抓娃自然动作里刚好「落点」的瞬间，比如放下积木、转身那一下，剪的时候对到重拍上。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄、4K 30fps 全片统一</strong>，别一段开电影效果、一段开动作模式，画质和观感会跳。</li>
+                  <li>手持双手握稳，走位用小步挪，别大步跑；节奏快的段落宁可机位固定拍动作，也别边跑边晃。</li>
+                  <li>拍前先听两遍音乐，用手打拍子记下重拍位置，拍的时候心里默数，剪辑时按重拍点切。</li>
+                  <li>动作模式只留给跑动、追娃这种确实需要防抖的镜头，平时别开，免得画面裁切感和平时镜头不一致。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>全程一个速度切</strong>：不管音乐快慢都 2 秒一切，舒缓段也切得碎，观众会累。</li>
+                  <li><strong>只卡开头、不卡后面</strong>：第一个切点对上了，后面越差越远——要按整首歌的节拍排镜头，不是凭感觉。</li>
+                  <li><strong>为了卡点硬剪</strong>：把动作剪断、把一句话剪一半去凑节拍，卡是卡了，内容断了，得不偿失。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>挑一首你熟悉的、节奏清楚的歌（比如带娃日常常用的轻快儿歌或纯音乐），先听一遍，用手打出重拍。</li>
+                  <li>拍 4 条、每条 3–5 秒：小小杜玩玩具的 4 个不同动作，起幅落幅都留半秒余量。</li>
+                  <li>剪的时候把 4 条的切换点分别对到 4 个重拍上，回放看：切过去那一下是不是刚好「踩」在鼓点上？不对就前后挪半拍再试。</li>
+                  <li>留下最顺的一组，这就是你第一段能卡上音乐的成片素材。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 13 -->
+        <article class="lesson" id="day13">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">13</span></div>
+            <div>
+              <h3>一镜到底练习</h3>
+              <p class="en">One-Take</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>整段一镜拍到底，中间不切——<strong>运镜、走位、节奏一次完成</strong>，观众跟着镜头「走完」整个过程。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>沉浸感最强</strong>：没有切点打断，观众像亲身在场，特别适合带娃日常这种生活感的段落。</li>
+                  <li><strong>检验基本功</strong>：一镜到底把推拉摇移跟全串起来，哪一环弱立刻露馅，是第一周运镜的综合考试。</li>
+                  <li><strong>省剪辑</strong>：拍好了就是成片，不用再拼镜头，特别适合娃状态好但只有几分钟窗口的时候。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>云台用<strong>跟随模式</strong>，提前走一遍路线：从哪起幅、经过哪几个点、到哪落幅，心里先排好。</li>
+                  <li>运镜组合 <strong>2–3 种就够</strong>：比如起幅远景推近 → 摇过房间 → 跟上人物走到窗边落幅，一气呵成。</li>
+                  <li>步伐小步匀速、膝盖微屈；转弯时<strong>先转腰再转云台</strong>，别猛掰摇杆。</li>
+                  <li>正式录之前空手排练 2 遍走位，记好每个转折点的脚步数，别边拍边想路线。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li><strong>1x 主摄 4K 30fps</strong>，走动拍摄开动作模式，防抖最稳。</li>
+                  <li>双手握持贴紧身体、肘部夹紧，走路时脚跟先着地轻放，别大步跨。</li>
+                  <li>长镜头容易手酸：中途可以安排短暂停顿（比如人物停下看东西）当作<strong>「呼吸点」</strong>，别硬撑着走完。</li>
+                  <li>一镜到底别超过 <strong>30–60 秒</strong>，太长观众会累，失误率也高。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>路线没排练</strong>：走到一半撞上家具、穿帮，只能重拍，娃的耐心也耗没了。</li>
+                  <li><strong>运镜贪多</strong>：一镜里塞五六种运镜，观众看晕；2–3 种组合、每种给足时间才是对的。</li>
+                  <li><strong>开头结尾没留余量</strong>：起幅就动、落幅就停，剪辑时没法接前后镜头，成片会显得仓促。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>设计一条 <strong>20 秒路线</strong>：从门口推近 → 摇到小小杜玩积木 → 跟他走到窗边 → 落幅在窗外。</li>
+                  <li>先空手走 2 遍记路线，再正式拍 3 遍。</li>
+                  <li>挑一遍最顺的：标准是全程没撞、没大抖、起幅落幅都稳，留着当第一周的毕业作品。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= 第 4 周 ================= -->
+      <section class="week" id="week4">
+        <div class="week-head">
+          <p class="wno">WEEK 4</p>
+          <h2>实战短片</h2>
+          <p>前面三周的零件全部组装起来：先策划一条 30 秒短片，再按脚本实拍，最后剪成片。这三天连着做，就是一次完整的短片生产流程。</p>
+        </div>
+
+        <!-- Day 14 -->
+        <article class="lesson" id="day14">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">14</span></div>
+            <div>
+              <h3>30 秒短片策划</h3>
+              <p class="en">Planning a 30-Second Short</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>30 秒不是「随便拍 30 秒」，而是先定好开头、中间、结尾各讲什么，再按脚本去拍——<strong>策划做在前面，拍摄才不乱</strong>。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>定结构</strong>：30 秒一般分 3 段——前 5 秒交代（人在哪、干什么）、中间 20 秒讲过程（动作、变化）、最后 5 秒收尾（情绪点、笑点）。</li>
+                  <li><strong>控时长</strong>：每段先定秒数，拍的时候不超，剪的时候不用到处凑。</li>
+                  <li><strong>保底线</strong>：哪怕娃中途不配合，至少开头和结尾两段能用，片子就不至于全废。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>按 Day 9 的脚本格式写 <strong>6–8 条</strong>：镜号、景别、运镜、时长、画面内容。</li>
+                  <li>云台模式提前标好：推拉跟用跟随模式，固定机位用锁定模式，别临场换。</li>
+                  <li><strong>先拍最难的镜头</strong>（娃状态好的时候），简单的补拍放后面；每条多留 2 秒头尾。</li>
+                  <li>30 秒片子素材别贪多：8 条左右、每条 3–5 秒就够，拍多了剪着累。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>全片统一 <strong>1x 主摄、4K 30fps</strong>，别混焦段混帧率。</li>
+                  <li>动作模式只留给跑动、追娃的镜头，其他固定或慢走的镜头用普通视频。</li>
+                  <li>拍之前把脚本存在手机备忘录里，现场一条一条打勾，别凭记忆。</li>
+                  <li>录音注意：<strong>带娃日常环境音就是最好的声音</strong>，别全程配音乐盖过去。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>没定结构就开拍</strong>：拍了一堆素材，剪的时候发现没开头、没结尾。</li>
+                  <li><strong>一段讲太多事</strong>：30 秒想讲起床、吃饭、出门三件事，结果每件都没讲清。</li>
+                  <li><strong>时长失控</strong>：开头拍了 15 秒，后面只能赶，情绪点全被挤没了。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>定一个主题：比如「小小杜早上搭积木」。</li>
+                  <li>写一份 30 秒脚本：<strong>6 条</strong>，每条含镜号、景别、运镜、时长、画面内容。</li>
+                  <li>对照 Day 9 的格式检查：每条是不是只有一个动作？时长加起来是不是 30 秒左右？</li>
+                  <li>明天就按这份脚本实拍，今晚先把脚本发给自己存好。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 15 -->
+        <article class="lesson" id="day15">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">15</span></div>
+            <div>
+              <h3>实拍 30 秒短片</h3>
+              <p class="en">Shooting a 30-Second Short</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>脚本是纸上的，成片是拍出来的——按昨天的脚本一条一条拍，<strong>每条多拍一遍，回来才有得挑</strong>。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>把策划落地</strong>：Day 14 定的开头、中间、结尾，只有拍出来才知道哪条真能用。</li>
+                  <li><strong>检验脚本</strong>：拍的时候发现某条动作讲不清、时长不够，正好回头改脚本，别等剪的时候才发现。</li>
+                  <li><strong>留剪辑余地</strong>：多拍一遍、多留头尾，剪辑时才有选择，不会被一条废镜头卡住。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 怎么拍</h4>
+                <ul>
+                  <li>按脚本顺序拍，先拍娃状态最好的难镜头，简单的补拍放后面，别想到哪拍到哪。</li>
+                  <li>云台模式提前标好：运动、跟拍用跟随模式，固定机位用锁定模式，别临场换模式手忙脚乱。</li>
+                  <li>步伐小步匀速、膝盖微屈，转弯时先转腰再转云台，别猛掰摇杆；构图跑偏了用摇杆微调，别整机甩过去。</li>
+                  <li>每条开头、结尾各多留 2 秒，<strong>同一镜头至少拍 2 遍</strong>：一遍按脚本走，一遍让娃自由发挥，回来挑更自然的那遍。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么拍</h4>
+                <ul>
+                  <li>全片统一 <strong>1x 主摄、4K 30fps</strong>，别混焦段混帧率，不然剪出来画质和观感会跳。</li>
+                  <li>动作模式只留给跑动、追娃的镜头，其他固定或慢走的镜头用普通视频。</li>
+                  <li>双手握持贴紧身体、肘部夹紧，走路脚跟先着地轻放；<strong>长按锁定对焦和曝光</strong>，别让亮度在一条里忽明忽暗。</li>
+                  <li>录音注意：带娃日常的环境音就是最好的声音，别全程配音乐盖过去，也别离娃太远收不到说话声。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>一条过</strong>：只拍一遍，回来发现娃眨眼、手抖、话没说完，没得换。</li>
+                  <li><strong>凭记忆拍、顺序乱拍</strong>：漏了结尾镜头，回来才发现片子没收尾，只能补拍重来。</li>
+                  <li><strong>每条都掐头去尾拍得刚刚好</strong>：剪辑时没头尾可接，切点全露馅；还有贪多拍十几条，剪的时候挑花眼。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>拿出 Day 14 的脚本，主题就用你写好的那一个，比如「小小杜早上搭积木」。</li>
+                  <li>正式拍 <strong>6 条，每条拍 2 遍</strong>，起幅落幅都留 2 秒余量，全程按脚本顺序打勾，别漏条。</li>
+                  <li>按脚本顺序拼一个 30 秒粗剪，先不加音乐、不加特效，看故事通不通：开头交代清了吗？中间过程顺吗？结尾有情绪点吗？</li>
+                  <li>留下最顺的一版当成片初版，挑的标准就一条：<strong>不看脚本的人看一遍，能讲出这 30 秒在干什么</strong>。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 16 -->
+        <article class="lesson" id="day16">
+          <div class="lesson-head">
+            <div class="day-badge"><span class="d">DAY</span><span class="n">16</span></div>
+            <div>
+              <h3>剪辑成片</h3>
+              <p class="en">Editing the Cut</p>
+            </div>
+          </div>
+          <div class="lesson-body">
+            <p class="one-liner"><span class="tag">一句话</span>拍好的素材只是原材料，剪辑就是按 Day 14 的脚本把它们排成一条 30 秒的线——<strong>先搭骨架，再修细节</strong>，别一上来就加特效。</p>
+            <div class="blocks">
+              <div class="block role wide">
+                <h4><span class="dot"></span>在分镜里它起什么作用</h4>
+                <ul>
+                  <li><strong>兑现脚本</strong>：按开头、中间、结尾的结构把镜头排好，故事线先立住，片子才不散。</li>
+                  <li><strong>检验拍摄</strong>：剪的时候发现哪条镜头缺了、接不上，正好知道下次拍要补什么。</li>
+                  <li><strong>定节奏</strong>：Day 12 的音乐卡点在这里落地，切点落在节拍上，片子才显得顺。</li>
+                </ul>
+              </div>
+              <div class="block pocket">
+                <h4><span class="dot"></span>Pocket4 · 素材整理</h4>
+                <ul>
+                  <li>导素材前先在相机里按 Day 14 的脚本顺序给镜头排个号，<strong>废片当场删</strong>，留素材不留负担。</li>
+                  <li>同一条镜头拍了 2 遍的，挑娃表情更自然、起幅落幅更稳的那遍，别两遍都留着纠结。</li>
+                  <li>导出时<strong>保持原画质</strong>，别为了省空间先压一遍，压画质的步骤只留到最后出片时做一次。</li>
+                </ul>
+              </div>
+              <div class="block iphone">
+                <h4><span class="dot"></span>iPhone 15 怎么剪</h4>
+                <ul>
+                  <li>用手机上的剪辑 App 新建 30 秒项目，先按脚本把 6–8 条镜头按顺序排好，<strong>不加音乐、不加转场</strong>，先看一遍故事通不通。</li>
+                  <li>故事通了再精修：每条头尾各剪掉多余的半秒，切点尽量落在动作完成或音乐重拍上。</li>
+                  <li>全片统一 <strong>4K 30fps</strong> 导出，别混帧率；字幕、转场各只用一种，能不用特效就不用。</li>
+                </ul>
+              </div>
+              <div class="block err">
+                <h4><span class="dot"></span>常见错误</h4>
+                <ul>
+                  <li><strong>先加音乐加特效再排故事</strong>：骨架没搭好，特效越多片子越乱。</li>
+                  <li><strong>舍不得删</strong>：拍了 8 条全想留，30 秒塞不下，节奏全拖垮——先保故事，再保单条。</li>
+                  <li><strong>切点落在动作中间</strong>：人物刚抬手就切了，观众看着别扭，切点要落在动作完成或停顿的那一帧。</li>
+                </ul>
+              </div>
+              <div class="block practice">
+                <h4><span class="dot"></span>今天 5 分钟练习<span class="time">5 MIN</span></h4>
+                <ul>
+                  <li>把 Day 15 拍的素材导进手机剪辑 App，按 Day 14 脚本排一版<strong>「素剪」</strong>（无音乐、无特效），控制在 30 秒左右。</li>
+                  <li>排完完整看 2 遍，记下 <strong>1 个最想删的镜头和 1 个最想补的镜头</strong>，明天拍的时候就知道补什么了。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p>四周主线到这里走完：运镜（第 1 周）→ 分镜逻辑（第 2 周）→ 转场与节奏（第 3 周）→ 一条 30 秒短片（第 4 周）。复习时从目录直接跳到对应课即可。</p>
+        <p>页面中的示范视频与景别对照图为 AI 生成的演示素材，用于看运镜方向、景别和节奏；真机手感以 Pocket4 / iPhone 15 实拍为准。<a class="top-link" href="#week1">回到第 1 周 ↑</a></p>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        // 生成 Day 快速跳转
+        var titles = {
+          1: "推镜", 2: "拉镜", 3: "摇镜", 4: "移镜", 5: "跟镜",
+          6: "景别语言", 7: "轴线与 180 度规则", 8: "切镜与匹配", 9: "分镜脚本",
+          10: "遮挡转场", 11: "匹配转场", 12: "节奏与卡点", 13: "一镜到底",
+          14: "30 秒策划", 15: "实拍短片", 16: "剪辑成片"
+        };
+        var nav = document.getElementById("dayNav");
+        for (var i = 1; i <= 16; i++) {
+          var a = document.createElement("a");
+          a.className = "day";
+          a.href = "#day" + i;
+          a.textContent = "Day " + i + " " + titles[i];
+          a.dataset.target = "day" + i;
+          nav.appendChild(a);
+        }
+        // 滚动高亮当前课 / 当前周
+        var dayLinks = nav.querySelectorAll("a.day");
+        var weekLinks = document.querySelectorAll("nav.toc a.week");
+        function setActive(list, el) {
+          list.forEach(function (x) { x.classList.toggle("active", x === el); });
+        }
+        var lessonObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              dayLinks.forEach(function (x) {
+                x.classList.toggle("active", x.dataset.target === e.target.id);
+              });
+            }
+          });
+        }, { rootMargin: "-30% 0px -60% 0px" });
+        document.querySelectorAll("article.lesson").forEach(function (el) { lessonObs.observe(el); });
+        var weekObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              weekLinks.forEach(function (x) {
+                x.classList.toggle("active", x.getAttribute("href") === "#" + e.target.id);
+              });
+            }
+          });
+        }, { rootMargin: "-20% 0px -70% 0px" });
+        document.querySelectorAll("section.week").forEach(function (el) { weekObs.observe(el); });
+      })();
+    </script>
+  </body>
+</html>
