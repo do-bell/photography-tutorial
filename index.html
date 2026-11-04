@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="data:," />
-    <title>摄影交互教程 · 分镜与运镜 16 课</title>
+    <title>摄影交互教程 · 分镜与运镜 17 课</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -107,6 +107,32 @@
       nav.toc a.day:hover { border-color: var(--line); color: var(--ink); }
       nav.toc a.day.active { background: var(--ink); color: var(--bg); }
 
+      /* ---------- 目录折叠 + 横屏左侧栏 ---------- */
+      nav.toc .toc-toggle {
+        display: flex; align-items: center; gap: 8px; width: 100%;
+        background: none; border: 0; padding: 2px 0 8px; cursor: pointer;
+        font: inherit; color: var(--ink); text-align: left;
+      }
+      nav.toc .toc-toggle .toc-title { font-weight: 800; font-size: 15px; }
+      nav.toc .toc-toggle .toc-state { font-size: 12.5px; color: var(--ink-3); font-weight: 500; }
+      nav.toc .toc-toggle .chev { margin-left: auto; font-size: 14px; color: var(--ink-3); transition: transform .2s; }
+      nav.toc.collapsed .toc-body { display: none; }
+      nav.toc.collapsed .toc-toggle .chev { transform: rotate(-90deg); }
+      nav.toc.collapsed .toc-state { display: none; }
+      @media (orientation: landscape) and (min-width: 700px) {
+        .wrap { max-width: 1240px; }
+        .layout { display: flex; align-items: flex-start; gap: 28px; }
+        nav.toc {
+          flex: 0 0 240px; position: sticky; top: 16px;
+          margin: 18px 0 0; padding: 14px;
+          border: 1px solid var(--line); border-radius: 12px;
+        }
+        nav.toc.collapsed { flex-basis: auto; }
+        nav.toc .weeks { flex-direction: column; }
+        main.content { flex: 1; min-width: 0; }
+        section.week, article.lesson { scroll-margin-top: 20px; }
+      }
+
       /* ---------- 章节 ---------- */
       section.week { margin-top: 52px; scroll-margin-top: 120px; }
       .week-head { border-top: 3px solid var(--ink); padding-top: 16px; margin-bottom: 6px; }
@@ -204,16 +230,23 @@
       <header class="hero">
         <p class="kicker">POCKET 4 + IPHONE 15 · 每日一课</p>
         <h1>摄影交互教程：分镜与运镜</h1>
-        <p class="lede">四周主线、16 课全文：从推拉摇移跟五种运镜，到景别、轴线、转场、节奏，最后落到一条 30 秒短片的策划、实拍与剪辑。其中运镜、景别和轴线课配了示范视频与图解——推拉摇移四合一示范片、跟镜、景别示范和轴线示意图，跟着练就行。</p>
+        <p class="lede">四周主线 16 课 + 循环加深（现已 17 课）：从推拉摇移跟五种运镜，到景别、轴线、转场、节奏，最后落到一条 30 秒短片的策划、实拍与剪辑。其中运镜、景别和轴线课配了示范视频与图解——推拉摇移四合一示范片、跟镜、景别示范和轴线示意图，跟着练就行。</p>
         <div class="meta">
-          <span><b>16</b> 课</span>
+          <span><b>17</b> 课</span>
           <span><b>4</b> 周主线</span>
           <span>设备 <b>Pocket4</b> · <b>iPhone 15</b></span>
           <span>每课一个 <b>5 分钟练习</b></span>
         </div>
       </header>
 
+      <div class="layout">
       <nav class="toc" aria-label="课程目录">
+        <button class="toc-toggle" type="button" aria-expanded="true" aria-controls="tocBody">
+          <span class="toc-title">目录</span>
+          <span class="toc-state">17 课 · 5 章节</span>
+          <span class="chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="toc-body" id="tocBody">
         <div class="weeks">
           <a class="week" href="#week1">第 1 周<small>运镜基础</small></a>
           <a class="week" href="#week2">第 2 周<small>分镜逻辑</small></a>
@@ -222,7 +255,10 @@
           <a class="week" href="#deepen">循环加深<small>新运镜</small></a>
         </div>
         <div class="days" id="dayNav"></div>
+        </div>
       </nav>
+
+      <main class="content">
 
       <!-- ================= 第 1 周 ================= -->
       <section class="week" id="week1">
@@ -1282,6 +1318,8 @@
           </div>
         </article>
       </section>
+      </main>
+      </div>
 
       <footer>
         <p>四周主线到这里走完：运镜（第 1 周）→ 分镜逻辑（第 2 周）→ 转场与节奏（第 3 周）→ 一条 30 秒短片（第 4 周）。循环加深从 Day 17 继续，新课会陆续加进来。复习时从目录直接跳到对应课即可。</p>
@@ -1334,6 +1372,19 @@
           });
         }, { rootMargin: "-20% 0px -70% 0px" });
         document.querySelectorAll("section.week").forEach(function (el) { weekObs.observe(el); });
+        // 目录折叠：竖屏默认收起，横屏默认展开；点按钮切换
+        var toc = document.querySelector("nav.toc");
+        var toggle = toc.querySelector(".toc-toggle");
+        function setToc(open) {
+          toc.classList.toggle("collapsed", !open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+        toggle.addEventListener("click", function () {
+          setToc(toc.classList.contains("collapsed"));
+        });
+        if (window.matchMedia("(orientation: portrait)").matches || window.innerWidth < 700) {
+          setToc(false);
+        }
       })();
     </script>
   </body>
